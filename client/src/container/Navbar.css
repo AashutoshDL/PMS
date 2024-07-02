@@ -1,0 +1,52 @@
+.navbar-container {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 0.1rem;
+  box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.1)
+}
+
+.navbar-logo img {
+  width: 70px;
+  padding-left: 2rem;
+}
+
+.navbar-elements {
+  display: flex;
+  margin-left: 27rem;
+}
+
+.auth-elements {
+  margin-left: 15rem;
+}
+
+.auth-elements button {
+  background-color: var(--color-button);
+  padding: 10px 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+
+.nav-sec1,
+.nav-sec2,
+.nav-sec3,
+.nav-sec4 {
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+}
+
+.nav-sec1:hover,
+.nav-sec2:hover,
+.nav-sec3:hover,
+.nav-sec4:hover {
+  background-color: #333;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #333;
+}

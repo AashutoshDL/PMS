@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap');
+
+:root {
+
+  --font-family: "Readex Pro", "sans-serif";
+  --color-button: #A59611;
+  --color-inside-form: #EF9A9A;
+  --color-bg: #FFF5E1;
+  --color-form-element: #0C1844;
+  --color-mini-text: #767676;
+
+}
