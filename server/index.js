@@ -41,7 +41,7 @@ app.get('/', async (req, res) => {
   res.send("Helllo, server!");
 });
 
-app.post("/addprojects", async (req, res) => {
+app.post("/api/addprojects", async (req, res) => {
   const {
     projectName,
     projectType,
@@ -62,7 +62,7 @@ app.post("/addprojects", async (req, res) => {
   }
 });
 
-app.get("/projects", async (req, res) => {
+app.get("/api/projects", async (req, res) => {
   try {
     const projects = await Project.find();
     res.json(projects);
@@ -71,7 +71,7 @@ app.get("/projects", async (req, res) => {
   }
 });
 
-app.get("/projectsbyid/:id",async(req,res)=>{
+app.get("/api/projectsbyid/:id",async(req,res)=>{
   const id=req.params.id;
   try{
     const project=await Project.findById(id)
@@ -82,7 +82,7 @@ app.get("/projectsbyid/:id",async(req,res)=>{
   }
 })
 
-app.delete("/deleteprojects/:id", async (req, res) => {
+app.delete("/api/deleteprojects/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const deleteProject = await Project.findByIdAndDelete(id);
@@ -97,7 +97,7 @@ app.delete("/deleteprojects/:id", async (req, res) => {
 });
 
 
-app.put("/updateprojects/:id", async (req, res) => {
+app.put("/api/updateprojects/:id", async (req, res) => {
   const id = req.params.id;
   const { projectName, projectType, members, projectStatus } = req.body;
   const updatedData={projectName, projectType, members, projectStatus}
