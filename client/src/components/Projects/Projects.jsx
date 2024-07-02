@@ -13,7 +13,7 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/projects');
+        const response = await axios.get('https://pms-kohl-two.vercel.app/projects');
         setProjects(response.data);
       } catch (error) {
         console.error("Error while fetching projects", error);
@@ -26,7 +26,7 @@ const Projects = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
-        await axios.delete(`http://localhost:3000/deleteprojects/${id}`);
+        await axios.delete(`https://pms-kohl-two.vercel.app/deleteprojects/${id}`);
         // Update state to remove the deleted project
         setProjects(projects.filter(project => project._id !== id));
         toast.success("Project deleted successfully");
