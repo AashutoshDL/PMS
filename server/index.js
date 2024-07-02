@@ -30,9 +30,10 @@ connectDB(); // Connect to MongoDB when app starts
 app.use(express.json()); // Body parser middleware
 app.use(cors(corsOptions)); // CORS middleware
 
-app.post('/',()=>{
-  console.log("HELLO SERVER")
-})
+app.post('/', async (req, res) => {
+  console.log("HELLO SERVER");
+  res.send("Hello, server!");
+});
 
 app.post("/addprojects", async (req, res) => {
   const {
