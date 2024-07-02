@@ -17,7 +17,7 @@ const UpdateProjects = () => {
   useEffect(() => {
     const fetchProjectData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/projectsbyid/${id}`);
+        const response = await axios.get(`https://pms-kohl-two.vercel.app/projectsbyid/${id}`);
         const projectData = response.data;
         setProjectData({
           projectName: projectData.projectName,
@@ -45,7 +45,7 @@ const UpdateProjects = () => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:3000/updateprojects/${id}`, projectData);
+      await axios.put(`https://pms-kohl-two.vercel.app/updateprojects/${id}`, projectData);
       toast.success("Project updated successfully");
       navigate('/projects');
     } catch (error) {
