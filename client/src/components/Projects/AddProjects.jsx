@@ -31,7 +31,7 @@ const AddProjects = () => {
     }
 
     try {
-      await axios.post('http://localhost:3000/addprojects', newProject);
+      await axios.post('https://pms-kohl-two.vercel.app/addprojects', newProject);
       
       toast.success("Project Added");
 
