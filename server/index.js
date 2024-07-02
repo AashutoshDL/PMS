@@ -31,7 +31,7 @@ app.use(express.json()); // Body parser middleware
 app.use(cors(corsOptions)); // CORS middleware
 
 app.get('/', async (req, res) => {
-  res.send("Hello, server!");
+  res.send("Helllo, server!");
 });
 
 app.post("/addprojects", async (req, res) => {
