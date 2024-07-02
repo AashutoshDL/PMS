@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://pms-mocha.vercel.app/",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
@@ -29,6 +29,10 @@ connectDB(); // Connect to MongoDB when app starts
 
 app.use(express.json()); // Body parser middleware
 app.use(cors(corsOptions)); // CORS middleware
+
+app.post('/',()=>{
+  console.log("HELLO SERVER")
+})
 
 app.post("/addprojects", async (req, res) => {
   const {
@@ -60,7 +64,7 @@ app.get("/projects", async (req, res) => {
   }
 });
 
-app.get("/projectsbyId/:id",async(req,res)=>{
+app.get("/projectsbyid/:id",async(req,res)=>{
   const id=req.params.id;
   try{
     const project=await Project.findById(id)

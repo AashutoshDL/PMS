@@ -96,7 +96,7 @@ const AddProjects = () => {
     <option value="Amiks Karki">Amiks Karki</option>
     <option value="Anuja Gautam">Anuja Gautam</option>
     <option value="Arjun Gaywali">Arjun Gaywali</option>
-    <option value="Aryan Shrestha">Aryan Shrestha</option>
+    <option value="Aaryan Shrestha">Aaryan Shrestha</option>
     <option value="Bimal Magar">Bimal Magar</option>
     <option value="Jitendra Thapa">Jitendra Thapa</option>
     <option value="Kaustuv Duwadi">Kaustuv Duwadi</option>
