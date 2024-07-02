@@ -13,7 +13,7 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get('https://pms-kohl-two.vercel.app/projects');
+        const response = await axios.get('https://pms-kohl-two.vercel.app/api/projects');
         setProjects(response.data);
       } catch (error) {
         console.error("Error while fetching projects", error);
@@ -26,7 +26,7 @@ const Projects = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
-        await axios.delete(`https://pms-kohl-two.vercel.app/deleteprojects/${id}`);
+        await axios.delete(`https://pms-kohl-two.vercel.app/api/deleteprojects/${id}`);
         // Update state to remove the deleted project
         setProjects(projects.filter(project => project._id !== id));
         toast.success("Project deleted successfully");
@@ -68,7 +68,7 @@ const Projects = () => {
                   <td>{project.members}</td>
                   <td>{project.projectStatus}</td>
                   <td>
-                  <Link to={`/updateprojects/${project._id}`} className="btn btn-primary">Update</Link>
+                  <Link to={`/api/updateprojects/${project._id}`} className="btn btn-primary">Update</Link>
                   <button className='btn btn-danger' onClick={()=>{handleDelete(project._id)}}>Delete</button>
                   </td>
                 </tr>
