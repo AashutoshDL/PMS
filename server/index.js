@@ -35,7 +35,7 @@ const connectDB = async () => {
 connectDB(); // Connect to MongoDB when app starts
 
 app.use(express.json()); // Body parser middleware
-app.use(cors(corsOptions)); // CORS middleware
+app.use(cors()); // CORS middleware
 
 app.get('/', async (req, res) => {
   res.send("Helllo, server!");
