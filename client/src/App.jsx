@@ -11,7 +11,6 @@ function App() {
       <ToastContainer />
       <Routes>
       <Route path='/' element={<SkillMuseum />} />
-      <Route path='/events' element={<Events />} />
       <Route path='/projects' element={<Projects />} />
       <Route path='/addprojects' element={<AddProjects />} />
       <Route path='/updateprojects/:id' element={<UpdateProjects />} />
