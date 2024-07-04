@@ -34,6 +34,10 @@ connectDB();
 app.use(express.json());
 app.use(cors(corsOptions));
 
+app.get('/',(req,res) =>{
+  res.send("Hello server")
+})
+
 //project routes
 app.get("/api/projects", projectController.projects);
 app.post("/api/addprojects", projectController.addprojects);
