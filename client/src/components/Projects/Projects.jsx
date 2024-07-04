@@ -13,8 +13,12 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get('https://pms-kohl-two.vercel.app/api/projects');
-        setProjects(response.data);
+          const response = await axios.get(`${import.meta.env.VITE_backend_url}/api/projects`);
+        if(response.data.length>0){
+          setProjects(response.data);
+        }else{
+        toast.warning("No data found in the database")
+        }
       } catch (error) {
         console.error("Error while fetching projects", error);
         toast.error("Error fetching Projects");
@@ -26,7 +30,7 @@ const Projects = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
-        await axios.delete(`https://pms-kohl-two.vercel.app/api/deleteprojects/${id}`);
+        await axios.delete(`${import.meta.env.VITE_backend_url}/api/deleteproject/${id}`);
         // Update state to remove the deleted project
         setProjects(projects.filter(project => project._id !== id));
         toast.success("Project deleted successfully");
@@ -36,8 +40,6 @@ const Projects = () => {
       }
     }
   };
-  
-
   return (
     <div className="projects-container mt-5">
       <button className='btn btn-secondary' onClick={() => { navigate('/') }}>Home</button>
@@ -77,12 +79,11 @@ const Projects = () => {
           </tbody>
         </table>
         <div className="projects-button">
-          <button className='btn btn-primary' onClick={() => { navigate('/addProjects') }}>Add</button>
+          <button className='btn btn-primary' onClick={() => { navigate('/addprojects') }}>Add</button>
         </div>
       </div>
       <ToastContainer />
     </div>
   );
 };
-
 export default Projects;
