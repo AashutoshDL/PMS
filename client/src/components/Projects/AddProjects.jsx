@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './addprojects.css';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -31,19 +31,11 @@ const AddProjects = () => {
     }
 
     try {
-      await axios.post('http://localhost:3000/addprojects', newProject);
+      await axios.post(`${import.meta.env.VITE_backend_url}/api/addprojects`, newProject);
       
       toast.success("Project Added");
-
-      // setNewProject({
-      //   projectName: '',
-      //   projectType: '',
-      //   members: '',
-      //   projectStatus: ''
-      // });
-
       navigate('/projects');
-      
+    
     } catch (error) {
       console.error("Error occurred", error);
       toast.error("Unexpected Error. Please try again");

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -17,7 +17,7 @@ const UpdateProjects = () => {
   useEffect(() => {
     const fetchProjectData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/projectsbyid/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_backend_url}/api/getprojectbyid/${id}`);
         const projectData = response.data;
         setProjectData({
           projectName: projectData.projectName,
@@ -45,7 +45,7 @@ const UpdateProjects = () => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:3000/updateprojects/${id}`, projectData);
+      await axios.put(`${import.meta.env.VITE_backend_url}/api/updateprojects/${id}`, projectData);
       toast.success("Project updated successfully");
       navigate('/projects');
     } catch (error) {
