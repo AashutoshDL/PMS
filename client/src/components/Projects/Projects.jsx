@@ -40,8 +40,6 @@ const Projects = () => {
       }
     }
   };
-  
-
   return (
     <div className="projects-container mt-5">
       <button className='btn btn-secondary' onClick={() => { navigate('/') }}>Home</button>
@@ -72,7 +70,7 @@ const Projects = () => {
                   <td>{project.members}</td>
                   <td>{project.projectStatus}</td>
                   <td>
-                  <Link to={`/updateprojects/${project._id}`} className="btn btn-primary">Update</Link>
+                  <Link to={`/api/updateprojects/${project._id}`} className="btn btn-primary">Update</Link>
                   <button className='btn btn-danger' onClick={()=>{handleDelete(project._id)}}>Delete</button>
                   </td>
                 </tr>
@@ -88,5 +86,4 @@ const Projects = () => {
     </div>
   );
 };
-
 export default Projects;

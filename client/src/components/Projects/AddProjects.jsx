@@ -3,7 +3,6 @@ import './addprojects.css';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
-
 const AddProjects = () => {
   const navigate = useNavigate();
   const [newProject, setNewProject] = useState({
@@ -12,7 +11,6 @@ const AddProjects = () => {
     members: '',
     projectStatus: ''
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProject(prevState => ({
@@ -20,28 +18,22 @@ const AddProjects = () => {
       [name]: value
     }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     // Basic form validation
     if (!newProject.projectName || !newProject.projectType || !newProject.members || !newProject.projectStatus) {
       toast.error("Please fill in all fields.");
       return;
     }
-
     try {
       await axios.post(`${import.meta.env.VITE_backend_url}/api/addprojects`, newProject);
-      
       toast.success("Project Added");
       navigate('/projects');
-    
     } catch (error) {
       console.error("Error occurred", error);
       toast.error("Unexpected Error. Please try again");
     }
   };
-
   return (
     <div className="addproject-container mt-5">
       <form onSubmit={handleSubmit}>
@@ -108,7 +100,6 @@ const AddProjects = () => {
     <option value="Bhusan Luitel">Bhusan Luitel</option>
   </select>
 </div>
-
         <div className="mb-3">
           <label htmlFor="projectStatus" className="form-label">Project Status</label>
           <select 
@@ -137,5 +128,4 @@ const AddProjects = () => {
     </div>
   );
 };
-
 export default AddProjects;
