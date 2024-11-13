@@ -26,7 +26,7 @@ const AddProjects = () => {
       return;
     }
     try {
-      await axios.post(`${import.meta.env.VITE_backend_url}/api/addprojects`, newProject);
+      await axios.post(`${import.meta.env.VITE_backend_url}/projects/addprojects`, newProject);
       toast.success("Project Added");
       navigate('/projects');
     } catch (error) {

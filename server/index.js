@@ -1,23 +1,18 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const cors = require("cors");
 const projectController = require("./controllers/projectController");
-
-dotenv.config();
+const authRoutes = require("./routes/authRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+const projectRoutes = require("./routes/projectRoutes");
+// const connectDB = require("./connection/connection");
+const authenticateToken = require("./middlewares/authenticationMiddleware");
+const mongoose = require("mongoose");
 const app = express();
+app.use(cors());
+app.use(express.json());
+require("dotenv").config();
 
-const corsOptions = {
-  origin: `${process.env.frontend_url}`,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "Acess-Control-Allow-Origin",
-  ],
-};
-
-const URL = `mongodb+srv://${process.env.DB_User}:${process.env.DB_Pass}@pms.7s7kbw4.mongodb.net/PMS`;
+const URL = `mongodb+srv://${process.env.DB_User}:${process.env.DB_Password}@pms.7s7kbw4.mongodb.net/PMS?retryWrites=true&w=majority&appName=PMS`;
 
 const connectDB = async () => {
   try {
@@ -31,19 +26,10 @@ const connectDB = async () => {
 
 connectDB();
 
-app.use(express.json());
-app.use(cors(corsOptions));
-
-app.get('/',(req,res) =>{
-  res.send("Hello server")
-})
-
-//project routes
-app.get("/api/projects", projectController.projects);
-app.post("/api/addprojects", projectController.addprojects);
-app.get("/api/getprojectbyid/:id", projectController.projectbyid);
-app.delete("/api/deleteproject/:id", projectController.deleteproject);
-app.put("/api/updateprojects", projectController.updateprojects);
+//authentication routes
+app.use("/auth", authRoutes);
+app.use("/user", authenticateToken, profileRoutes);
+app.use("/projects", projectRoutes);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

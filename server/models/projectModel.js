@@ -12,8 +12,32 @@ const projectSchema = new mongoose.Schema({
   },
 
   members: {
-    type:String,
-    enum:["Apil Ghimire","Aashutosh Dahal","Amiks Karki","Anuja Gautam","Arjun Gaywali","Aaryan Shrestha","Bimal Magar","Jitendra Thapa","Kaustuv Duwadi","Kristan Dharel","Milan Thapa","MOHAMMAD Taushif Reza","Pranav Kattel","Prakit Karanjit","Bibek Poudel","Ram Nepali","Saksham Shrestha","Sambij Pandey","Satyam Dulal","Suyog Bhattrai","Zokchen Tamang","Niraj Pradhan","Bhusan Luitel"]
+    type: String,
+    enum: [
+      "Apil Ghimire",
+      "Aashutosh Dahal",
+      "Amiks Karki",
+      "Anuja Gautam",
+      "Arjun Gaywali",
+      "Aaryan Shrestha",
+      "Bimal Magar",
+      "Jitendra Thapa",
+      "Kaustuv Duwadi",
+      "Kristan Dharel",
+      "Milan Thapa",
+      "MOHAMMAD Taushif Reza",
+      "Pranav Kattel",
+      "Prakit Karanjit",
+      "Bibek Poudel",
+      "Ram Nepali",
+      "Saksham Shrestha",
+      "Sambij Pandey",
+      "Satyam Dulal",
+      "Suyog Bhattrai",
+      "Zokchen Tamang",
+      "Niraj Pradhan",
+      "Bhusan Luitel",
+    ],
   },
 
   projectStatus: {
