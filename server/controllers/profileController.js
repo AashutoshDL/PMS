@@ -7,7 +7,7 @@ exports.Profile = async (req, res, next) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.status(200).json({
+    res.status(201).json({
       message: "User fetched successfully",
       user: {
         id: user._id,

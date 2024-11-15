@@ -22,7 +22,6 @@ module.exports.Register = async (req, res) => {
       password: hashedPassword,
     });
     await newUser.save();
-
     res.status(201).json({ message: "New user created" });
   } catch (error) {
     console.error("error registering user", error);
@@ -34,33 +33,62 @@ const createToken = (user) => {
   const token = jwt.sign(
     { id: user._id, email: user.email },
     process.env.JWT_Secret,
-    { expiresIn: "1h" }
+    { expiresIn: "5h" }
   );
   return token;
 };
 
+// exports.Login = async (req, res) => {
+//   const { email, password } = req.body;
+//   try {
+//     const user = await Auth.findOne({ email });
+//     if (!user) {
+//       return res
+//         .status(404)
+//         .json({ message: "Invalid email or No user please register" });
+//     }
+
+//     const token = createToken(user);
+//     // res.status(200).json({ message: "Token created", token });
+
+//     //comparing passwords
+//     const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+//     if (!isPasswordCorrect) {
+//       return res.status(400).json({ message: "Ivalid passsword" });
+//     } else {
+//       //login successful message
+//       return res.status(200).json({ message: "Logged In" });
+//     }
+//   } catch (error) {
+//     console.error("Error Loggin the user", error);
+//     return res.status(500).json({ message: "Internal server error" });
+//   }
+// };
+
 exports.Login = async (req, res) => {
   const { email, password } = req.body;
   try {
+    // Find user by email
     const user = await Auth.findOne({ email });
     if (!user) {
       return res
-        .status(400)
-        .json({ message: "Invalid email or No user please register" });
+        .status(404)
+        .json({ message: "Invalid email or No user. Please register" });
     }
-    const token = createToken(user);
-    res.status(200).json({ message: "Token created", token });
 
-    //comparing passwords
+    // Compare passwords
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
-      return res.status(400).json({ message: "Ivalid passsword" });
-    } else {
-      //login successful message
-      return res.status(200).json({ message: "Logged In" });
+      return res.status(400).json({ message: "Invalid password" });
     }
+
+    // If everything is correct, create token
+    const token = createToken(user);
+    // Send the success response with token
+    return res.status(200).json({ message: "Logged In", token });
   } catch (error) {
-    console.error("Error Loggin the user", error);
+    console.error("Error Logging the user", error);
     return res.status(500).json({ message: "Internal server error" });
   }
 };
